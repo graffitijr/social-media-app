@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin Sign In</title>
+    <style>
+        body, html {
+            background-color: #272829;
+        }
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <input type="text" id="username">
+    <input type="password" id="password">
+    <button id="login-btn" onclick="attemptLogin()">Login</button>
+</div>
+
+<script>
+    //see if logged in already
+    document.addEventListener('DOMContentLoaded', () => {
+        if (localStorage.getItem("admin") == "true") {
+            window.location.href = "admin.html";
+        }
+    })
+
+
+    function attemptLogin(){
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        if (username === "admin" && password === "admin") {
+            localStorage.setItem("admin", "true");
+            window.location.href="admin.html";
+        }
+    }
+</script>
+</body>
+</html>
