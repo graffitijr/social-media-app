@@ -61,7 +61,7 @@
             body: JSON.stringify({text : TextEntered.value})
         });
         const text = await res.text();
-        alert(text);
+        window.location.reload();
     }
 
     let PublicContent;
