@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HomeScreen</title>
+    <style>
+        body, html {
+            background: #272829;
+        }
+        .type-post {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #user-text-to-post {
+            width: 30vw;
+            height: 2vh;
+        }
+        #button-post {
+            margin-top: 1vh;
+            width: 5vw;
+            height: 3vh;
+        }
+        #current-content {
+            color: #FFF6E0;
+        }
+    </style>
+</head>
+<body>
+<div class="type-post">
+    <input type="text" id="user-text-to-post">
+    <button id="button-post" onclick="SendToServer()">Post</button>
+    <p id="current-content">No current Posted</p>
+</div>
+
+<script>
+    //on startup request posted content
+
+    document.addEventListener("DOMContentLoaded", function() {
+        RequestPublicContent();
+    });
+
+
+    const TextEntered = document.getElementById('user-text-to-post');
+    const DisplayedContent = document.getElementById('current-content');
+
+    //send content to worker
+
+    async function SendToServer(){
+        const res = await fetch("backend-worker.noahrich2028.workers.dev/post-content", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({text : TextEntered.value})
+        });
+        const text = await res.text();
+        alert(text);
+    }
+
+    let PublicContent;
+
+    //request and render posted content from server
+
+    async function RequestPublicContent(){
+        const res = await fetch("backend-worker.noahrich2028.workers.dev/get-content");
+
+        RenderContent(await res.text());
+    }
+
+    function RenderContent(content){
+        DisplayedContent.innerHTML = content;
+    }
+
+</script>
+</body>
+</html>
