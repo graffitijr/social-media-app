@@ -47,7 +47,7 @@
     //send content to worker
 
     async function SendToServer(){
-        const res = await fetch("backend-worker.noahrich2028.workers.dev/post-content", {
+        const res = await fetch("https://backend-worker.noahrich2028.workers.dev/post-content", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({text : TextEntered.value})
@@ -61,7 +61,7 @@
     //request and render posted content from server
 
     async function RequestPublicContent(){
-        const res = await fetch("backend-worker.noahrich2028.workers.dev/get-content");
+        const res = await fetch("https://backend-worker.noahrich2028.workers.dev/get-content");
 
         RenderContent(await res.text());
     }
