@@ -24,9 +24,17 @@
         #current-content {
             color: #FFF6E0;
         }
+        #button-sign-in {
+            color: #FFF6E0;
+            position: absolute;
+            top: 1vh;
+            right: 1vw;
+            color: black;
+        }
     </style>
 </head>
 <body>
+<button id="button-sign-in">Sign In</button>
 <div class="type-post">
     <input type="text" id="user-text-to-post">
     <button id="button-post" onclick="SendToServer()">Post</button>
@@ -69,6 +77,10 @@
     function RenderContent(content){
         DisplayedContent.innerHTML = content;
     }
+
+    document.getElementById("button-sign-in").addEventListener("click", function(){
+        window.location.href = "sign-in-page.html";
+    });
 
 </script>
 </body>
