@@ -206,6 +206,8 @@
             alert("failed to get global chat");
         }
         if (res.ok) {
+            alert("received global chat");
+
             const chatArray = await res.json();
             RenderGlobalChat(chatArray);
         }
