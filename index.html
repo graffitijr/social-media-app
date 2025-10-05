@@ -40,7 +40,7 @@
 </head>
 <body>
 <div class="main-container">
-    <input class="inputs" type="text" id="input-username" placeholder="Name"/>
+    <input class="inputs" type="text" id="input-username" placeholder="Username"/>
     <input class="inputs" type="text" id="input-password" placeholder="Password"/>
     <button class="buttons" onclick="CheckLogin()" id="button-login">Login</button>
     <button class="buttons" onclick="PostSignUp()" id="button-signup">Signup</button>
@@ -54,8 +54,8 @@
     const BaseWorkerLink = "https://backend-worker.noahrich2028.workers.dev" //set to full base worker link, dont forget https://
 
     async function PostSignUp() {
-        let username = InputUsername.value;
-        let password = InputPassword.value;
+        let username = InputUsername.value.toLowerCase();
+        let password = InputPassword.value.toLowerCase();
 
         const res = await fetch(BaseWorkerLink + "/sign-up", { //change /post to same as backend, something that shows you are posting
             method: "POST",
@@ -71,8 +71,8 @@
 
     async function CheckLogin() {
 
-        let username = InputUsername.value;
-        let password = InputPassword.value;
+        let username = InputUsername.value.toLowerCase();
+        let password = InputPassword.value.toLowerCase();
 
         const res = await fetch(BaseWorkerLink + "/login", {
             method: "POST",
