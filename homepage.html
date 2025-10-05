@@ -220,7 +220,7 @@
         container.innerHTML = '';
 
         chat_array.forEach((item, index) => {
-            button = document.createElement("p");
+            let button = document.createElement("p");
             button.textContent = item.from + ": " + item.message;
             button.className = "text-bubbles";
 
