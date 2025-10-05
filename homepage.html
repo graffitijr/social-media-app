@@ -91,13 +91,13 @@
     const BaseWorkerLink = "https://backend-worker.noahrich2028.workers.dev"
 
     document.addEventListener("DOMContentLoaded", function() {
-
+        GetAccounts()
     })
 
     async function GetAccounts(){
-        const res = await fetch(BaseWorkerLink + "get-accounts");
+        const res = await fetch(BaseWorkerLink + "/get-accounts");
 
-        accounts = await res.text();
+        accounts = await res.json();
         RenderAccounts(accounts);
     }
     function RenderAccounts(accounts){
