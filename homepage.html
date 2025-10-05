@@ -16,9 +16,10 @@
         }
         .people-list {
             display: flex;
+            flex-direction: column;
             grid-area: people;
             border: 1px solid #D3DAD9;
-            justify-content: center;
+            align-items: center;
             color: #D3DAD9;
         }
         .main-area {
@@ -63,10 +64,22 @@
             opacity: 70%;
         }
         #accounts-container{
-
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         .AccountButtons {
-
+            width: 15vw;
+            height: 2vw;
+            background-color: #715A5A;
+            border: none;
+            border-radius: 10px;
+            color: #D3DAD9;
+            font: 2.5vh "Segoe UI";
+            font-weight: 700;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            margin: .5vh;
         }
     </style>
 </head>
@@ -75,7 +88,8 @@
     <aside class="people-list">
         <h1>People</h1>
         <div id="accounts-container">
-
+            <button class="AccountButtons">wwwwwwwwwwwwwww</button>
+            <button class="AccountButtons">wwwwwwwwwwwwwww</button>
         </div>
     </aside>
     <div class="main-area">
