@@ -94,16 +94,22 @@
         GetAccounts()
     })
 
-    async function GetAccounts(){
-        const res = await fetch(BaseWorkerLink + "/get-accounts",{
+    async function GetAccounts() {
+        const res = await fetch(BaseWorkerLink + "/get-accounts", {
             method: "GET",
             credentials: "include"
-            }
-        );
+        });
 
-        accounts = await res.json();
+        if (!res.ok) {
+            const text = await res.text();
+            alert("Could not get accounts: " + text);
+            return;
+        }
+
+        const accounts = await res.json();
         RenderAccounts(accounts);
     }
+
     function RenderAccounts(accounts){
         const container = document.getElementById('accounts-container');
         container.innerHTML = '';
