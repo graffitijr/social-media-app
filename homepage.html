@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+    <style>
+        body, html {
+            background-color: #37353E;
+        }
+        .main-container-grid {
+            display: grid;
+            grid-template-areas:
+            "main people";
+            grid-template-columns: 1fr 20vw;
+            height: 98vh;
+        }
+        .people-list {
+            display: flex;
+            grid-area: people;
+            border: 1px solid #D3DAD9;
+            justify-content: center;
+            color: #D3DAD9;
+        }
+        .main-area {
+            display: flex;
+            flex-direction: column;
+            grid-area: main;
+            border: 1px solid #D3DAD9;
+            color: #D3DAD9;
+            align-items: center;
+        }
+        #whole-type-send-box {
+            position: absolute;
+            background-color: #44444E;
+            width: 35vw;
+            height: 2.5vw;
+            bottom: 3vh;
+            border-radius: 1.25vw;
+        }
+        #input-main-text {
+            color: #D3DAD9;
+            position: absolute;
+            width: 31vw;
+            height: 1.5vw;
+            top: .5vw;
+            left: .5vw;
+            background: none;
+            border: none;
+            outline: none;
+            font-size: 1vw;
+        }
+        #send-button {
+            background: none;
+            border: none;
+        }
+        #send-button-icon {
+            width: 1.3vw;
+            position: absolute;
+            right: 1vw;
+            top: 1.5vh;
+        }
+        #send-button-icon:hover {
+            opacity: 70%;
+        }
+        #accounts-container{
+
+        }
+        .AccountButtons {
+
+        }
+    </style>
+</head>
+<body>
+<div class="main-container-grid">
+    <aside class="people-list">
+        <h1>People</h1>
+        <div id="accounts-container">
+
+        </div>
+    </aside>
+    <div class="main-area">
+        <h1>Main Area</h1>
+        <div id="whole-type-send-box">
+            <input type="text" id="input-main-text">
+            <button id="send-button"><img id="send-button-icon" src="output-onlinepngtools.png"></button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const BaseWorkerLink = "https://backend-worker.noahrich2028.workers.dev"
+
+    document.addEventListener("DOMContentLoaded", function() {
+
+    })
+
+    async function GetAccounts(){
+        const res = await fetch(BaseWorkerLink + "get-accounts");
+
+        accounts = await res.text();
+        RenderAccounts(accounts);
+    }
+    function RenderAccounts(accounts){
+        const container = document.getElementById('accounts-container');
+        container.innerHTML = '';
+        accounts.forEach((index) => {
+
+            const btn = document.createElement('button');
+            btn.textContent = accounts[index];
+            btn.className = "AccountButtons";
+            /*
+            btn.addEventListener("click", () => {
+                RenderStoryFullWords(stories.title, stories.content);
+            })
+
+             */
+            container.appendChild(btn);
+        });
+    }
+
+</script>
+</body>
+</html>
