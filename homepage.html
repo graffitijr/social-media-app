@@ -88,11 +88,11 @@
     <aside class="people-list">
         <h1>People</h1>
         <div id="accounts-container">
-            
+
         </div>
     </aside>
     <div class="main-area">
-        <h1>Main Area</h1>
+        <h1 id="convo-name">Main Area</h1>
         <div id="whole-type-send-box">
             <input type="text" id="input-main-text">
             <button id="send-button"><img id="send-button-icon" src="output-onlinepngtools.png"></button>
@@ -101,6 +101,8 @@
 </div>
 
 <script>
+    const MainConvoName = document.getElementById('convo-name');
+
     const BaseWorkerLink = "https://backend-worker.noahrich2028.workers.dev"
 
     document.addEventListener("DOMContentLoaded", function() {
@@ -131,14 +133,16 @@
             const btn = document.createElement('button');
             btn.textContent = username;
             btn.className = "AccountButtons";
-            /*
             btn.addEventListener("click", () => {
-                RenderStoryFullWords(stories.title, stories.content);
+                ChangeConvoTitle(username);
             })
 
-             */
+
             container.appendChild(btn);
         });
+    }
+    function ChangeConvoTitle(new_name){
+        MainConvoName.textContent = new_name;
     }
 
 </script>
