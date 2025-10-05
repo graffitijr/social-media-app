@@ -81,18 +81,40 @@
             box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
             margin: .5vh;
         }
+        .text-bubbles {
+            width: 30vw;
+            height: 3vw;
+            background-color: #715A5A;
+            border: none;
+            border-radius: 10px;
+            color: #D3DAD9;
+            font: 2.25vh "Segoe UI";
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            margin: .5vh;
+            text-align: center;
+            align-content: center;
+        }
+        .texts-container {
+            display: flex;
+            height: 80.5vh;
+            flex-direction: column-reverse;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
 <div class="main-container-grid">
     <aside class="people-list">
-        <h1>People</h1>
+        <h1>DMs</h1>
         <div id="accounts-container">
 
         </div>
     </aside>
     <div class="main-area">
         <h1 id="convo-name">Global Chat</h1>
+        <div class="texts-container">
+
+        </div>
         <div id="whole-type-send-box">
             <input type="text" id="input-main-text">
             <button id="send-button"><img id="send-button-icon" src="output-onlinepngtools.png"></button>
@@ -107,6 +129,7 @@
 
     document.addEventListener("DOMContentLoaded", function() {
         GetAccounts()
+        GetGlobalChat()
     })
 
     //handle getting and rendering accounts on sidebar
@@ -154,6 +177,7 @@
     const SendButton = document.getElementById('send-button');
     SendButton.addEventListener('click', () => {
         SendToGlobalChat(document.getElementById("input-main-text").value);
+        document.getElementById("input-main-text").value = "";
     })
 
     async function SendToGlobalChat(message){
@@ -170,6 +194,35 @@
         if (text === "sent to global chat successfully") {
             alert("message has been sent to global chat successfully");
         }
+    }
+
+    //get and render global chat
+
+    async function GetGlobalChat(){
+        const res = await fetch(BaseWorkerLink + "/get-global-chat", {
+            credentials: "include"
+        })
+        if (!res.ok) {
+            alert("failed to get global chat");
+        }
+        if (res.ok) {
+            const chatArray = await res.json();
+            RenderGlobalChat(chatArray);
+        }
+
+    }
+
+    function RenderGlobalChat(chat_array){
+        let container = document.getElementById('texts-container');
+        container.innerHTML = '';
+
+        chat_array.forEach((item, index) => {
+            button = document.createElement("p");
+            button.textContent = item.from + ": " + item.message;
+            button.className = "text-bubbles";
+
+            container.appendChild(button);
+        })
     }
 
 </script>
