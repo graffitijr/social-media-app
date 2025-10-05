@@ -95,7 +95,11 @@
     })
 
     async function GetAccounts(){
-        const res = await fetch(BaseWorkerLink + "/get-accounts");
+        const res = await fetch(BaseWorkerLink + "/get-accounts",{
+            method: "GET",
+            credentials: "include"
+            }
+        );
 
         accounts = await res.json();
         RenderAccounts(accounts);
@@ -103,10 +107,10 @@
     function RenderAccounts(accounts){
         const container = document.getElementById('accounts-container');
         container.innerHTML = '';
-        accounts.forEach((index) => {
+        accounts.forEach((username) => {
 
             const btn = document.createElement('button');
-            btn.textContent = accounts[index];
+            btn.textContent = username;
             btn.className = "AccountButtons";
             /*
             btn.addEventListener("click", () => {
