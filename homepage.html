@@ -219,10 +219,10 @@
         let container = document.getElementById('texts-container');
         container.innerHTML = '';
 
-        chat_array.forEach((item, index) => {
-            let button = document.createElement("p");
-            button.textContent = item.from + ": " + item.message;
-            button.className = "text-bubbles";
+        chat_array.forEach((item) => {
+            const bubble = document.createElement("p");
+            bubble.textContent = item.from + ": " + item.message;
+            bubble.className = "text-bubbles";
 
             container.appendChild(button);
         })
