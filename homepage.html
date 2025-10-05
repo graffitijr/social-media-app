@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="main-doc">
 <head>
     <meta charset="UTF-8">
     <title>Homepage</title>
@@ -124,12 +124,15 @@
 
 <script>
     const MainConvoName = document.getElementById('convo-name');
+    const Main = document.getElementById("main-doc");
 
     const BaseWorkerLink = "https://backend-worker.noahrich2028.workers.dev"
 
     document.addEventListener("DOMContentLoaded", function() {
+        Main.style.visibility = "hidden";
         GetAccounts()
         GetGlobalChat()
+        Main.style.visibility = "visible";
     })
 
     //handle getting and rendering accounts on sidebar
