@@ -92,7 +92,7 @@
         </div>
     </aside>
     <div class="main-area">
-        <h1 id="convo-name">Main Area</h1>
+        <h1 id="convo-name">Global Chat</h1>
         <div id="whole-type-send-box">
             <input type="text" id="input-main-text">
             <button id="send-button"><img id="send-button-icon" src="output-onlinepngtools.png"></button>
@@ -108,6 +108,8 @@
     document.addEventListener("DOMContentLoaded", function() {
         GetAccounts()
     })
+
+    //handle getting and rendering accounts on sidebar
 
     async function GetAccounts() {
         const res = await fetch(BaseWorkerLink + "/get-accounts", {
@@ -141,8 +143,28 @@
             container.appendChild(btn);
         });
     }
+
+    //handle changing conversion title
     function ChangeConvoTitle(new_name){
         MainConvoName.textContent = new_name;
+    }
+
+    //handle sending to global chat
+
+    async function SendToGlobalChat(message){
+        const res = await fetch(BaseWorkerLink + "/send-to-global-chat", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            credentials: "include",
+            body: JSON.stringify(message)
+        })
+        if (!res.ok) {
+            alert("message failed to send to global chat");
+        }
+        text = await res.text();
+        if (text === "sent to global chat successfully") {
+            alert("message has been sent to global chat successfully");
+        }
     }
 
 </script>
