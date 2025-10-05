@@ -151,6 +151,11 @@
 
     //handle sending to global chat
 
+    const SendButton = document.getElementById('send-button');
+    SendButton.addEventListener('click', () => {
+        SendToGlobalChat("input-main-text");
+    })
+
     async function SendToGlobalChat(message){
         const res = await fetch(BaseWorkerLink + "/send-to-global-chat", {
             method: "POST",
