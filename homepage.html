@@ -153,7 +153,7 @@
 
     const SendButton = document.getElementById('send-button');
     SendButton.addEventListener('click', () => {
-        SendToGlobalChat("input-main-text");
+        SendToGlobalChat(document.getElementById("input-main-text").value);
     })
 
     async function SendToGlobalChat(message){
